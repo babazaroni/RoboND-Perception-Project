@@ -67,10 +67,6 @@ Below is the third collection where seven of eight objects are correctly detecte
 
 ![world3](misc_images/world_3.png)
 
-![alt text][world1]
-![alt text][world2]
-![alt text][world3]
-
 
 Spend some time at the end to discuss your code, what techniques you used, what worked and why, where the implementation might fail and how you might improve it if you were going to pursue this project further.  
 
