@@ -42,6 +42,11 @@ You're reading it!
 #### 2. Complete Exercise 3 Steps.  Features extracted and SVM trained.  Object recognition implemented.
 Here is an example of how to include an image in your writeup.
 
+[//]: # (Image References)
+
+[image1]: ./misc_images/misc1.png
+
+
 ![demo-1](https://user-images.githubusercontent.com/20687560/28748231-46b5b912-7467-11e7-8778-3095172b7b19.png)
 
 ### Pick and Place Setup
