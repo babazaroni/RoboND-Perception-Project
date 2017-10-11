@@ -55,9 +55,16 @@ Here is an example of how to include an image in your writeup.
 
 And here's another image!
 
+Below is the first collection where the three objects are correctly detected.
 
 ![world1](misc_images/world_1.png)
+
+Below is the second collection where the five objects are correctly detected.
+
 ![world2](misc_images/world_2.png)
+
+Below is the third collection where seven of eight objects are correctly detected.  The glue, which is just behind the book, is misidentified as sticky notes.
+
 ![world3](misc_images/world_3.png)
 
 ![alt text][world1]
