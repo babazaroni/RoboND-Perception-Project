@@ -1,76 +1,92 @@
-## Project: Perception Pick & Place
-### Writeup Template: You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
+## Introduction
 
----
-
-
-# Required Steps for a Passing Submission:
-1. Extract features and train an SVM model on new objects (see `pick_list_*.yaml` in `/pr2_robot/config/` for the list of models you'll be trying to identify). 
-2. Write a ROS node and subscribe to `/pr2/world/points` topic. This topic contains noisy point cloud data that you must work with.
-3. Use filtering and RANSAC plane fitting to isolate the objects of interest from the rest of the scene.
-4. Apply Euclidean clustering to create separate clusters for individual items.
-5. Perform object recognition on these objects and assign them labels (markers in RViz).
-6. Calculate the centroid (average in x, y and z) of the set of points belonging to that each object.
-7. Create ROS messages containing the details of each object (name, pick_pose, etc.) and write these messages out to `.yaml` files, one for each of the 3 scenarios (`test1-3.world` in `/pr2_robot/worlds/`).  [See the example `output.yaml` for details on what the output should look like.](https://github.com/udacity/RoboND-Perception-Project/blob/master/pr2_robot/config/output.yaml)  
-8. Submit a link to your GitHub repo for the project or the Python code for your perception pipeline and your output `.yaml` files (3 `.yaml` files, one for each test world).  You must have correctly identified 100% of objects from `pick_list_1.yaml` for `test1.world`, 80% of items from `pick_list_2.yaml` for `test2.world` and 75% of items from `pick_list_3.yaml` in `test3.world`.
-9. Congratulations!  Your Done!
-
-# Extra Challenges: Complete the Pick & Place
-7. To create a collision map, publish a point cloud to the `/pr2/3d_map/points` topic and make sure you change the `point_cloud_topic` to `/pr2/3d_map/points` in `sensors.yaml` in the `/pr2_robot/config/` directory. This topic is read by Moveit!, which uses this point cloud input to generate a collision map, allowing the robot to plan its trajectory.  Keep in mind that later when you go to pick up an object, you must first remove it from this point cloud so it is removed from the collision map!
-8. Rotate the robot to generate collision map of table sides. This can be accomplished by publishing joint angle value(in radians) to `/pr2/world_joint_controller/command`
-9. Rotate the robot back to its original state.
-10. Create a ROS Client for the “pick_place_routine” rosservice.  In the required steps above, you already created the messages you need to use this service. Checkout the [PickPlace.srv](https://github.com/udacity/RoboND-Perception-Project/tree/master/pr2_robot/srv) file to find out what arguments you must pass to this service.
-11. If everything was done correctly, when you pass the appropriate messages to the `pick_place_routine` service, the selected arm will perform pick and place operation and display trajectory in the RViz window
-12. Place all the objects from your pick list in their respective dropoff box and you have completed the challenge!
-13. Looking for a bigger challenge?  Load up the `challenge.world` scenario and see if you can get your perception pipeline working there!
-
-## [Rubric](https://review.udacity.com/#!/rubrics/1067/view) Points
-### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
-
----
-### Writeup / README
-
-#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  
-
-You're reading it!
-
-### Exercise 1, 2 and 3 pipeline implemented
-#### 1. Complete Exercise 1 steps. Pipeline for filtering and RANSAC plane fitting implemented.
-
-#### 2. Complete Exercise 2 steps: Pipeline including clustering for segmentation implemented.  
-
-#### 2. Complete Exercise 3 Steps.  Features extracted and SVM trained.  Object recognition implemented.
-Here is an example of how to include an image in your writeup.
-
-# introduction
-
-The goal for this project is to provide a robot with the necessary information in order for it to move objects on a table in front of it to bins located on either side.  The robot uses an RBGD camera, which captures a  color image, as well as depth information using infra-red illumination and detection.  After the objects are identified, a pick list is retrieved and the objects are moved to the bin assigned to them.
+The goal for this project is to provide a robot with the necessary information for it to move objects on a table in front of it to bins located on either side.  The robot uses an RBGD camera, which captures a  color image, as well as depth information using infra-red illumination and detection.  After the objects are identified, a pick list is retrieved and the objects are moved to the bin assigned to them.
 
 ![robot](misc_images/robot.png)
 
-# Object Detection
+## Object Detection
+
+The first step in object detection is to train a support vector machine to recognize the eight objects in various poses.  To do this, the objects are presented to the RGBD camera on a sensor stick as shown below.  Fifty poses are captured for each object.
 
 ![capture](misc_images/capture_features.png)
 
+The support vector machine is then trained with the caputured images and confusion matrices are calculated.  The first matrix below displays the raw count of identifications.  For example, the snacks was correctly identified forty five times and was confused as a book three times, as the soap2 one time, and as sticky notes one time.
+
+
 
 ![confusion1](misc_images/confusion1.png)
+
+The confusion matrix below is the same data but normalized and presented as percentages.
+
 ![confusion2](misc_images/confusion2.png)
 
 
-Below is the first collection where the three objects are correctly detected.
+The task was to present the robot with three increasingly complicated test sets.
+
+
+Below is the first test sets where the three objects are correctly detected.
 
 ![world1](misc_images/world_1.png)
 
-Below is the second collection where the five objects are correctly detected.
+Below is the second test set where the five objects are correctly detected.
 
 ![world2](misc_images/world_2.png)
 
-Below is the third collection where seven of eight objects are correctly detected.  The glue, which is just behind the book, is misidentified as sticky notes.
+Below is the third test set where seven of eight objects are correctly detected.  The glue, which is partially obscured by the book, is misidentified as a sticky note.
 
 ![world3](misc_images/world_3.png)
 
 
-Spend some time at the end to discuss your code, what techniques you used, what worked and why, where the implementation might fail and how you might improve it if you were going to pursue this project further.  
+## Software
+
+The task is to code the pcl_callback function, which is called with the camera's cloud data.
+
+1.  Statistical Outlier Filtering.  The image has some noise than can be filtered out using a statistical outlier filter
+    
+2.  Voxel Grid Downsampling.  To reduce computational load, the 3d info is downsampled.
+    
+3.  PassThrough Filter.  The scene is isolated so only the table and objects are visible
+    
+4.  RANSAC Plane Segmentation.  The table is then located via RANSA plane segmentation.
+    
+5.  Extract inliers and outliers.  The object cloud (inliers) and tables (outliers) is then extracted seperately.
+    
+6.  Euclidean Clustering.  The object cloud is then seperated into clusters using euclidean clustering.
+    
+7.  Create Cluster-Mask Point Cloud to visualize each cluster separately.  Each cluster is assigned a color and then sent to Rviz for visualization.
+    
+8.  Classify the clusters.  Go through each cluster and perform the identification steps 9,10,11.
+    
+
+9. Compute the associated feature vector.
+
+    Each cluster is identfied by calculating histograms of the color information and normals.  The normals are vectors normal to the surface of the object and gives shape information.  
+
+10. Make the prediction.  The histograms are concatenated and presented to the SVM predictor.
+
+
+11. Add the detected object to the list of detected objects.
+
+12.  Call the mover function.  The list of detected objects is then presented to the mover function
+
+## Mover Function
+    
+1.  Retrieve the pick list
+
+2.  Look up the destination bins in the pick list
+
+3.  Calculate the object position
+    The position is the centroid of the object cloud.
+    
+4.  Put the information into a yaml structure and add to the list.
+
+5.  Call the pick_place_routine to perform the operation.
+
+6.  Write out the list of yamls to a file.
+
+## Suggested Future Work
+
+The system was unable to propery identify the glue.   The glue was partially obscured by the book.  More time could have been spent in getting a better cloud of the glue.  One way would have been to perform the identification of all the objects again after each item was removed.  This would have given a good view of the glue when the book was removed.
 
 
 
