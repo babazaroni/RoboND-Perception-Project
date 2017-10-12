@@ -53,8 +53,20 @@ Here is an example of how to include an image in your writeup.
 
 #### 1. For all three tabletop setups (`test*.world`), perform object recognition, then read in respective pick list (`pick_list_*.yaml`). Next construct the messages that would comprise a valid `PickPlace` request output them to `.yaml` format.
 
-And here's another image! 
-![demo-2](https://user-images.githubusercontent.com/20687560/28748286-9f65680e-7468-11e7-83dc-f1a32380b89c.png)
+And here's another image!
+
+Below is the first collection where the three objects are correctly detected.
+
+![world1](misc_images/world_1.png)
+
+Below is the second collection where the five objects are correctly detected.
+
+![world2](misc_images/world_2.png)
+
+Below is the third collection where seven of eight objects are correctly detected.  The glue, which is just behind the book, is misidentified as sticky notes.
+
+![world3](misc_images/world_3.png)
+
 
 Spend some time at the end to discuss your code, what techniques you used, what worked and why, where the implementation might fail and how you might improve it if you were going to pursue this project further.  
 
