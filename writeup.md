@@ -65,16 +65,21 @@ The confusion matrix below is the same data but normalized and presented as perc
 ![confusion2](misc_images/confusion2.png)
 
 
-Below is the first collection where the three objects are correctly detected.
+The task was to present the robot with three increasingly complicated test sets.
+
+
+Below is the first test sets where the three objects are correctly detected.
 
 ![world1](misc_images/world_1.png)
 
-Below is the second collection where the five objects are correctly detected.
+Below is the second test set where the five objects are correctly detected.
 
 ![world2](misc_images/world_2.png)
 
-Below is the third collection where seven of eight objects are correctly detected.  The glue, which is just behind the book, is misidentified as a sticky note.  
+Below is the third test set where seven of eight objects are correctly detected.  The glue, which is partially obscured by the book, is misidentified as a sticky note.  
 ![world3](misc_images/world_3.png)
+
+The positions of the objects and their destination positions are then calculated and presented to the robot and it performs the operation of picking up the object and moving it to the destination bin.  This data is also output to yaml files to verify the data was calculated successfully.
 
 
 Spend some time at the end to discuss your code, what techniques you used, what worked and why, where the implementation might fail and how you might improve it if you were going to pursue this project further.  
