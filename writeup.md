@@ -84,13 +84,19 @@ The positions of the objects and their destination positions are then calculated
 ## Mover Function
     
 1.  Retrieve the pick list
-2.  Look up the destination bins
+
+2.  Look up the destination bins in the pick list
+
 3.  Calculate the object position
+    The position is the centroid of the object cloud.
+    
 4.  Put the information into a yaml structure and add to the list.
+
 5.  Call the pick_place_routine to perform the operation.
 
+## Suggested Future Work
 
-Spend some time at the end to discuss your code, what techniques you used, what worked and why, where the implementation might fail and how you might improve it if you were going to pursue this project further.  
+The system was unable to propery identify the glue.   The glue was partially obscured by the book.  More time could have been spent in getting a better cloud of the glue.  One way would have been to perform the identification of all the objects again after each item was removed.  This would have given a good view of the glue when the book was removed.
 
 
 
