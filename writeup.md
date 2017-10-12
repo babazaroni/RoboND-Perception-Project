@@ -1,6 +1,6 @@
 ## Introduction
 
-The goal for this project is to provide a robot with the necessary information in order for it to move objects on a table in front of it to bins located on either side.  The robot uses an RBGD camera, which captures a  color image, as well as depth information using infra-red illumination and detection.  After the objects are identified, a pick list is retrieved and the objects are moved to the bin assigned to them.
+The goal for this project is to provide a robot with the necessary information for it to move objects on a table in front of it to bins located on either side.  The robot uses an RBGD camera, which captures a  color image, as well as depth information using infra-red illumination and detection.  After the objects are identified, a pick list is retrieved and the objects are moved to the bin assigned to them.
 
 ![robot](misc_images/robot.png)
 
