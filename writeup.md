@@ -55,6 +55,10 @@ Here is an example of how to include an image in your writeup.
 
 And here's another image!
 
+![confusion1](misc_images/confusion1.png)
+![confusion2](misc_images/confusion2.png)
+
+
 Below is the first collection where the three objects are correctly detected.
 
 ![world1](misc_images/world_1.png)
