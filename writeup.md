@@ -36,9 +36,10 @@ Below is the third test set where seven of eight objects are correctly detected.
 
 ![world3](misc_images/world_3.png)
 
-The positions of the objects and their destination positions are then calculated and presented to the robot and it performs the operation of picking up the object and moving it to the destination bin.  This data is also output to yaml files to verify the data was calculated successfully.
 
 ## Software
+
+The task is to code the pcl_callback function, which is called with the camera's cloud data.
 
 1.  Statistical Outlier Filtering.  The image has some noise than can be filtered out using a statistical outlier filter
     
