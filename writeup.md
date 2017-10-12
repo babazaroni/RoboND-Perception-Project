@@ -42,11 +42,15 @@ You're reading it!
 #### 2. Complete Exercise 3 Steps.  Features extracted and SVM trained.  Object recognition implemented.
 Here is an example of how to include an image in your writeup.
 
-#introduction
+# introduction
 
 The goal for this project is to provide a robot with the necessary information in order for it to move objects on a table in front of it to bins located on either side.  The robot uses an RBGD camera, which captures a  color image, as well as depth information using infra-red illumination and detection.  After the objects are identified, a pick list is retrieved and the objects are moved to the bin assigned to them.
 
 ![robot](misc_images/robot.png)
+
+# Object Detection
+
+![capture](misc_images/capture_features.png)
 
 
 ![confusion1](misc_images/confusion1.png)
