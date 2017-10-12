@@ -47,7 +47,7 @@ Here is an example of how to include an image in your writeup.
 [image1]: ./misc_images/misc1.png
 
 
-![demo-1](https://user-images.githubusercontent.com/20687560/28748231-46b5b912-7467-11e7-8778-3095172b7b19.png)
+![demo-1](misc_images/robot.png)
 
 ### Pick and Place Setup
 
