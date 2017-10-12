@@ -42,18 +42,8 @@ You're reading it!
 #### 2. Complete Exercise 3 Steps.  Features extracted and SVM trained.  Object recognition implemented.
 Here is an example of how to include an image in your writeup.
 
-[//]: # (Image References)
+![robot](misc_images/robot.png)
 
-[image1]: ./misc_images/misc1.png
-
-
-![demo-1](misc_images/robot.png)
-
-### Pick and Place Setup
-
-#### 1. For all three tabletop setups (`test*.world`), perform object recognition, then read in respective pick list (`pick_list_*.yaml`). Next construct the messages that would comprise a valid `PickPlace` request output them to `.yaml` format.
-
-And here's another image!
 
 ![confusion1](misc_images/confusion1.png)
 ![confusion2](misc_images/confusion2.png)
