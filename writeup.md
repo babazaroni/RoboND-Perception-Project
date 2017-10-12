@@ -40,46 +40,33 @@ The positions of the objects and their destination positions are then calculated
 
 ## Software
 
-1.  Statistical Outlier Filtering
-    The image has some noise than can be filtered out using a statistical outlier filter
+1.  Statistical Outlier Filtering.  The image has some noise than can be filtered out using a statistical outlier filter
     
-2.  Voxel Grid Downsampling
-    To reduce computational load, the 3d info is downsampled.
+2.  Voxel Grid Downsampling.  To reduce computational load, the 3d info is downsampled.
     
-3.  PassThrough Filter
-    The scene is isolated so only the table and objects are visible
+3.  PassThrough Filter.  The scene is isolated so only the table and objects are visible
     
-4.  RANSAC Plane Segmentation
-    The table is then located via RANSA plane segmentation.
+4.  RANSAC Plane Segmentation.  The table is then located via RANSA plane segmentation.
     
-5.  Extract inliers and outliers
-    The object cloud (inliers) and tables (outliers) is then extracted seperately.
+5.  Extract inliers and outliers.  The object cloud (inliers) and tables (outliers) is then extracted seperately.
     
-6.  Euclidean Clustering
-    The object cloud is then seperated into clusters using euclidean clustering.
+6.  Euclidean Clustering.  The object cloud is then seperated into clusters using euclidean clustering.
     
-7.  Create Cluster-Mask Point Cloud to visualize each cluster separately
-    Each cluster is assigned a color and then sent to Rviz for visualization.
+7.  Create Cluster-Mask Point Cloud to visualize each cluster separately.  Each cluster is assigned a color and then sent to Rviz for visualization.
     
-8.  Classify the clusters
-
-    Go through each cluster and perform the identification steps 9,10,11.
+8.  Classify the clusters.  Go through each cluster and perform the identification steps 9,10,11.
     
 
-9. Compute the associated feature vector
+9. Compute the associated feature vector.
 
     Each cluster is identfied by calculating histograms of the color information and normals.  The normals are vectors normal to the surface of the object and gives shape information.  
 
-10. Make the prediction
-
-    The histograms are concatenated and presented to the SVM predictor.
+10. Make the prediction.  The histograms are concatenated and presented to the SVM predictor.
 
 
-11. Add the detected object to the list of detected objects
+11. Add the detected object to the list of detected objects.
 
-12.  Call the mover function
-
-    The list of detected objects is then presented to the mover function
+12.  Call the mover function.  The list of detected objects is then presented to the mover function
 
 ## Mover Function
     
