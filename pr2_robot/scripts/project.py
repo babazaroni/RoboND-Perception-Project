@@ -242,11 +242,6 @@ def pr2_mover(detected_object_list):
 
     # TODO: Rotate PR2 in place to capture side tables for the collision map
 
-#    pub_jcc = rospy.Publisher('/pr2/world_joint_controller/command', Float64, queue_size=3)
-#    pub_jcc.publish(np.pi/2.0)
-#    pub_jcc.publish(-np.pi/2.0)
-#    pub_jcc.publish(0.0)
-
 
     # TODO: Loop through the pick list
 
