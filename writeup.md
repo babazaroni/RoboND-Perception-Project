@@ -82,6 +82,8 @@ The task is to code the pcl_callback function, which is called with the camera's
 
 5.  Call the pick_place_routine to perform the operation.
 
+6.  Write out the list of yamls to a file.
+
 ## Suggested Future Work
 
 The system was unable to propery identify the glue.   The glue was partially obscured by the book.  More time could have been spent in getting a better cloud of the glue.  One way would have been to perform the identification of all the objects again after each item was removed.  This would have given a good view of the glue when the book was removed.
