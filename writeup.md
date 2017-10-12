@@ -63,21 +63,21 @@ The positions of the objects and their destination positions are then calculated
     
 8.  Classify the clusters
 
-    Go through each cluster and perform the identification steps.
+    Go through each cluster and perform the identification steps 9,10,11.
     
 
-  8a. Compute the associated feature vector
+9. Compute the associated feature vector
 
     Each cluster is identfied by calculating histograms of the color information and normals.  The normals are vectors normal to the surface of the object and gives shape information.  
 
-  8b. Make the prediction
+10. Make the prediction
 
     The histograms are concatenated and presented to the SVM predictor.
 
 
-  8c. Add the detected object to the list of detected objects
+11. Add the detected object to the list of detected objects
 
-9.  Call the mover function
+12.  Call the mover function
 
     The list of detected objects is then presented to the mover function
 
