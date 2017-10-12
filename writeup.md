@@ -42,18 +42,26 @@ You're reading it!
 #### 2. Complete Exercise 3 Steps.  Features extracted and SVM trained.  Object recognition implemented.
 Here is an example of how to include an image in your writeup.
 
-# introduction
+## Introduction
 
 The goal for this project is to provide a robot with the necessary information in order for it to move objects on a table in front of it to bins located on either side.  The robot uses an RBGD camera, which captures a  color image, as well as depth information using infra-red illumination and detection.  After the objects are identified, a pick list is retrieved and the objects are moved to the bin assigned to them.
 
 ![robot](misc_images/robot.png)
 
-# Object Detection
+## Object Detection
+
+The first step in object detection is to train a support vector machine to recognize the eight objects in various poses.  To do this, the objects are presented to the RGBD camera on a sensor stick as shown below.  Fifty poses are captured for each object.
 
 ![capture](misc_images/capture_features.png)
 
+The support vector machine is then trained with the caputured images and confusion matrices are calculated.  The first matrix below displays the raw count of identifications.  For example, the snacks was correctly identified forty five times and was confused as a book three times, as the soap2 one time, and as sticky notes one time.
+
+
 
 ![confusion1](misc_images/confusion1.png)
+
+The confusion matrix below is the same data but normalized and presented as percentages.
+
 ![confusion2](misc_images/confusion2.png)
 
 
@@ -65,8 +73,7 @@ Below is the second collection where the five objects are correctly detected.
 
 ![world2](misc_images/world_2.png)
 
-Below is the third collection where seven of eight objects are correctly detected.  The glue, which is just behind the book, is misidentified as sticky notes.
-
+Below is the third collection where seven of eight objects are correctly detected.  The glue, which is just behind the book, is misidentified as a sticky note.  
 ![world3](misc_images/world_3.png)
 
 
